@@ -1,27 +1,34 @@
 import { useState } from 'react';
-import Avatar from '../Avatar/Avatar';
+import Avatar from '../../../../components/Avatar/Avatar';
+import { user } from '../../../../types/users';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
+type headerProps = {
+  logOut: () => void;
+  user: user;
+};
+
+const Header = ({ user, logOut }: headerProps) => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
 
   return (
     <header>
-      <h1>Creator</h1>
+      <h1>Panel</h1>
       <button
         onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
         data-testid='menu-button'>
         <Avatar
-          name='Cassandra Snail'
+          name={user.name}
           data-testid='avatar'
         />
       </button>
       {isUserMenuOpen ? (
         <ul data-testid='menu-wrapper'>
           <li>
-            <a href='/'>Details</a>
+            <Link to='creator'>Creator</Link>
           </li>
           <li>
-            <button>log out</button>
+            <button onClick={logOut}>log out</button>
           </li>
         </ul>
       ) : null}

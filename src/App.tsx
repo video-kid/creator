@@ -1,13 +1,13 @@
-import Header from './components/Header/Header';
-import CreatorPage from './pages/creator/CreatorPage';
+import { UserDetailsProvider } from './context/userContext';
+import { RouterProvider } from 'react-router';
+import { routes } from './routes';
 
 function App() {
   return (
     <div className='App'>
-      <Header />
-      <main>
-        <CreatorPage />
-      </main>
+      <UserDetailsProvider>
+        <RouterProvider router={routes} />
+      </UserDetailsProvider>
     </div>
   );
 }
